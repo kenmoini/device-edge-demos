@@ -5,7 +5,7 @@
 - name: Save kubeconfig
   copy:
     src: ~/.kube/config
-    dest: {{ tmpdir.path }}/ocp/auth/kubeconfig
+    dest: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
 
 - name: import playbook to configure the local registry
   ansible.builtin.import_playbook: configure-registry.yml

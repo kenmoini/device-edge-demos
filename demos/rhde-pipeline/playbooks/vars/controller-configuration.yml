@@ -3,7 +3,6 @@
 controller_username: admin
 controller_validate_certs: false
 controller_configuration_credentials_secure_logging: false
-token: "XXXXXXXXX"
 server: "https://api.{{ inventory_hostname }}:6443"
 insecure_skip_tls_verify: true
 
@@ -19,8 +18,8 @@ controller_credential_types:
           multiline: true
     injectors:
       env:
-        K8S_AUTH_KUBECONFIG: "{  { tower.filename.kubeconfig }}"
-        KUBECONFIG: "{  { tower.filename.kubeconfig }}"
+        K8S_AUTH_KUBECONFIG: "{{ tower.filename.kubeconfig }}"
+        KUBECONFIG: "{{ tower.filename.kubeconfig }}"
       file:
         template.kubeconfig: "{  { kubeconfig }}"
   - name: RHSM Credentials

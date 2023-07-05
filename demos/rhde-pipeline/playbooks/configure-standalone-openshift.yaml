@@ -1,11 +1,26 @@
+---
+- name: configure the internal registry
+  hosts:
+    - sno_clusters
+  gather_facts: false
+  tasks:
+    - name: run from localhost
+      delegate_to: localhost
+      block:
+        - name: Login to OpenShift cluster
+          ansible.builtin.shell:
+            cmd: oc login --token {{ token }} --server {{ server }} --insecure-skip-tls-verify={{ insecure_skip_tls_verify }}
 
-- name: Login to OpenShift cluster
-  command: oc login --token {{ token }} --server {{ server }} --insecure-skip-tls-verify={{ insecure_skip_tls_verify }}
-
-- name: Save kubeconfig
-  copy:
-    src: ~/.kube/config
-    dest: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
+        - name: Save kubeconfig
+          copy:
+            src: ~/.kube/config
+            dest: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
 
 - name: import playbook to configure the local registry
   ansible.builtin.import_playbook: configure-registry.yml
+
+- name: import playbook to setup controller
+  ansible.builtin.import_playbook: install-ansible.yml
+     
+- name: import playbook to setup pipelines
+  ansible.builtin.import_playbook: configure-pipelines.yml

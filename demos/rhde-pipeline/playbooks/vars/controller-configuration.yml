@@ -3,6 +3,9 @@
 controller_username: admin
 controller_validate_certs: false
 controller_configuration_credentials_secure_logging: false
+token: "XXXXXXXXX"
+server: "https://api.{{ inventory_hostname }}:6443"
+insecure_skip_tls_verify: true
 
 controller_credential_types:
   - name: Openshift Kubeconfig

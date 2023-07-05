@@ -21,7 +21,7 @@ controller_credential_types:
         K8S_AUTH_KUBECONFIG: "{{ tower.filename.kubeconfig }}"
         KUBECONFIG: "{{ tower.filename.kubeconfig }}"
       file:
-        template.kubeconfig: "{  { kubeconfig }}"
+        template.kubeconfig: "{{ kubeconfig }}"
   - name: RHSM Credentials
     kind: cloud
     inputs:
@@ -35,8 +35,8 @@ controller_credential_types:
           secret: true
     injectors:
       extra_vars:
-        rhsm_username: "{  { rhsm_username }}"
-        rhsm_password: "{  { rhsm_password }}"
+        rhsm_username: "{{ rhsm_username }}"
+        rhsm_password: "{{ rhsm_password }}"
   - name: Image Credentials
     kind: cloud
     inputs:
@@ -50,8 +50,8 @@ controller_credential_types:
           secret: true
     injectors:
       extra_vars:
-        image_username: "{  { image_username }}"
-        image_password: "{  { image_password }}"
+        image_username: "{{ image_username }}"
+        image_password: "{{ image_password }}"
   - name: Ansible Controller API Credentials
     kind: cloud
     inputs:
@@ -68,9 +68,9 @@ controller_credential_types:
           secret: yes
     injectors:
       extra_vars:
-        controller_hostname: "{  { controller_hostname }}"
-        controller_username: "{  { controller_username }}"
-        controller_password: "{  { controller_password }}"
+        controller_hostname: "{{ controller_hostname }}"
+        controller_username: "{{ controller_username }}"
+        controller_password: "{{ controller_password }}"
         controller_validate_certs: "no"
   - name: Kubeadmin Credentials
     kind: cloud
@@ -85,8 +85,8 @@ controller_credential_types:
           secret: true
     injectors:
       extra_vars:
-        kubeadmin_username: "{  { kubeadmin_username }}"
-        kubeadmin_password: "{  { kubeadmin_password }}"
+        kubeadmin_username: "{{ kubeadmin_username }}"
+        kubeadmin_password: "{{ kubeadmin_password }}"
 controller_credentials:
   - name: kubeconfig
     organization: Default
@@ -149,7 +149,7 @@ controller_hosts:
     inventory: Local Actions
     variables:
       ansible_connection: local
-      ansible_python_interpreter: "{  { ansible_playbook_python }}"
+      ansible_python_interpreter: "{{ ansible_playbook_python }}"
 controller_projects:
   - name: Image Builder Codebase
     organization: Default

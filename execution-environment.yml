@@ -16,7 +16,6 @@ build_arg_defaults:
 dependencies:
   galaxy: demos/rhde-pipeline/ee-handler/_build/requirements.yml
   python: demos/rhde-pipeline/ee-handler/_build/requirements.txt
-  system: bindep.txt
 
 additional_build_steps:
   prepend: |

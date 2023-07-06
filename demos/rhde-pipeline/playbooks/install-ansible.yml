@@ -29,3 +29,4 @@
         - name: create instance of controller
           kubernetes.core.k8s:
             definition: "{{ lookup('file', 'files/instances/controller.yaml') | from_yaml }}"  
+      tags: install_ansible

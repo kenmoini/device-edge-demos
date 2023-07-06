@@ -29,6 +29,7 @@
             path: "{{ tmpdir.path }}/ocp/auth/kubeadmin-password"
             line: "{{ kubeadmin_password }}"
             state: present
+      tags: always
 
 
 - name: import playbook to configure the local registry

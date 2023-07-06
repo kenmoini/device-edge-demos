@@ -17,3 +17,5 @@
         - name: create virtual machine template
           kubernetes.core.k8s:
             template: files/virtual-machine-templates/rhel9-image-builder.yaml.j2
+      tags:
+        - setup_image_builder_template

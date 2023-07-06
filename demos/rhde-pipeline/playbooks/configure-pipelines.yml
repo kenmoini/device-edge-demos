@@ -20,3 +20,4 @@
             - operator_install.result.status.state == 'AtLatestKnown'
           retries: 100
           delay: 10
+      tags: configure_pipelines

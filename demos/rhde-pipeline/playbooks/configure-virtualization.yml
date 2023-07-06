@@ -34,3 +34,4 @@
             - not instance_creation.failed
           retries: 30
           delay: 30
+      tags: configure_virtualization

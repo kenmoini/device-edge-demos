@@ -14,6 +14,7 @@
       environment:
         KUBECONFIG: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
       register: _controller_route
+      tags: configure_controller
     - name: get controller admin password
       ansible.builtin.shell:
         cmd: oc get secret controller-admin-password -n ansible-automation-platform -o jsonpath="{.data['password']}"  | base64 --decode
@@ -23,13 +24,16 @@
         KUBECONFIG: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
       register: _controller_password
       no_log: true
+      tags: configure_controller
     - name: set controller facts
       ansible.builtin.set_fact:
         controller_hostname: "{{ _controller_route.stdout }}"
         controller_password: "{{ _controller_password.stdout }}"
+      tags: configure_controller
     - name: load in vars file
       ansible.builtin.include_vars:
         file: vars/controller-configuration.yml
+      tags: configure_controller
   roles:
     - redhat_cop.controller_configuration.credential_types
     - redhat_cop.controller_configuration.credentials
@@ -38,3 +42,4 @@
     - redhat_cop.controller_configuration.hosts
     - redhat_cop.controller_configuration.projects
     - redhat_cop.controller_configuration.job_templates
+  tags: configure_controller

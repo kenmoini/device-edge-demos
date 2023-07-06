@@ -31,3 +31,4 @@
             definition: "{{ lookup('file', 'files/instances/lvmcluster.yaml') | from_yaml }}"
           retries: 100
           delay: 10
+      tags: configure_storage

@@ -29,3 +29,4 @@
             chdir: "{{ tmpdir.path }}"
           environment:
             KUBECONFIG: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
+      tags: configure_registry

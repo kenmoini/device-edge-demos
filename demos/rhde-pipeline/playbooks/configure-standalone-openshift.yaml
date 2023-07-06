@@ -16,11 +16,49 @@
             src: ~/.kube/config
             dest: "{{ tmpdir.path }}/ocp/auth/kubeconfig"
 
+        - name: Create kubeadmin-password file
+          file:
+            path: "{{ tmpdir.path }}/ocp/auth/kubeadmin-password"
+            state: touch
+            owner: root
+            group: root
+            mode: 0600
+
+        - name: Write kubeadmin password to file
+          lineinfile:
+            path: "{{ tmpdir.path }}/ocp/auth/kubeadmin-password"
+            line: "{{ kubeadmin_password }}"
+            state: present
+
+
 - name: import playbook to configure the local registry
   ansible.builtin.import_playbook: configure-registry.yml
+  tags: configure_registry
 
 - name: import playbook to setup controller
   ansible.builtin.import_playbook: install-ansible.yml
-     
+  tags: install_ansible
+
+- name: import playbook to setup local storage
+  ansible.builtin.import_playbook: configure-storage.yml
+  tags: configure_storage
+
 - name: import playbook to setup pipelines
   ansible.builtin.import_playbook: configure-pipelines.yml
+  tags: configure_pipelines
+
+- name: import playbook to configure the controller
+  ansible.builtin.import_playbook: configure-controller.yml
+  tags: configure_controller
+
+- name: import playbook to setup virtualization
+  ansible.builtin.import_playbook: configure-virtualization.yml
+  tags: configure_virtualization
+
+- name: import playbook to setup image builder virtual machine template
+  ansible.builtin.import_playbook: setup-image-builder-template.yml
+  tags: setup_image_builder_template
+
+- name: import playbook to configure the deploy-edge-container
+  ansible.builtin.import_playbook: deploy-edge-container.yml
+  tags: deploy_edge_container

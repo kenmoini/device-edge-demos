@@ -40,6 +40,10 @@
   ansible.builtin.import_playbook: install-ansible.yml
   tags: install_ansible
 
+- name: import playbook to configure secrets
+  ansible.builtin.import_playbook: configure-secrets.yml
+  tags: configure_secrets
+
 - name: import playbook to setup local storage
   ansible.builtin.import_playbook: configure-storage.yml
   tags: configure_storage

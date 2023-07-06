@@ -20,4 +20,34 @@
             - operator_install.result.status.state == 'AtLatestKnown'
           retries: 100
           delay: 10
+        - name: Install compose-image
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/compose-image.yaml') | from_yaml }}"
+        - name: Install debug
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/debug.yaml') | from_yaml }}"
+        - name: Install deploy-composed-image
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/deploy-composed-image.yaml') | from_yaml }}"
+        - name: Install install-image-builder
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/install-image-builder.yaml') | from_yaml }}"
+        - name: Install manage-host-in-controller
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/manage-host-in-controller.yaml') | from_yaml }}"
+        - name: Install manage-image-builder-connectivty
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/manage-image-builder-connectivty.yaml') | from_yaml }}"
+        - name: Install manage-virtual-machine-connectivity
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/manage-virtual-machine-connectivity.yaml') | from_yaml }}"
+        - name: Install preconfigure-virtual-machine
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/preconfigure-virtual-machine.yaml') | from_yaml }}"
+        - name: Install push-image-to-registry
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipeline-tasks/push-image-to-registry.yaml') | from_yaml }}"
+        - name: Image-builder-pipeline
+          kubernetes.core.k8s:
+            definition: "{{ lookup('file', 'files/pipelines/image-builder-pipeline.yaml') | from_yaml }}"
       tags: configure_pipelines

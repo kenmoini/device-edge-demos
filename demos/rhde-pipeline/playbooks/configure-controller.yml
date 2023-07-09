@@ -32,7 +32,7 @@
       tags: configure_controller
     - name: load in vars file
       ansible.builtin.include_vars:
-        file: vars/controller-configuration.yml
+        file: "{{ controller_vars_loc }}"
       tags: configure_controller
   roles:
     - redhat_cop.controller_configuration.credential_types

@@ -9,11 +9,13 @@
       state: "{{ resource_state | default('present') }}"
   tasks:
         
-    - name: Get a list of all pods from any namespace
+    - name: Test kubeconfig login to cluster
       kubernetes.core.k8s_info:
-        kind: Pod
-      register: pod_list
-
+        kubeconfig: "{{ kubeconfig }}"
+      register: k8s_info
+      until: k8s_info is successfull
+      retries: 10
+      delay: 10
 
     - name: Create service for virtual machine
       kubernetes.core.k8s:

@@ -9,7 +9,7 @@
       state: "{{ resource_state | default('present') }}"
   tasks:
     - name: login into openshift cluster
-      k8s_auth:
+      community.okd.openshift_auth:
         username: "{{ kubeadmin_username }}"
         password: "{{ kubeadmin_password }}"
         host: "{{ k8s_api_address }}"

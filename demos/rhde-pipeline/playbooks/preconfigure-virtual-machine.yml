@@ -17,3 +17,8 @@
         state: present
         username: "{{ rhsm_username }}"
         password: "{{ rhsm_password }}"
+
+    - name:  subscription manager attach --auto
+      community.general.redhat_subscription:
+        state: present
+        auto_attach: true

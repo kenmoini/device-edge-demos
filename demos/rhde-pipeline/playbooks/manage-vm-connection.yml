@@ -1,6 +1,6 @@
 ---
 
-- name: manage service that allows connection to the vm
+- name: Manage service that allows connection to the vm
   hosts:
     - all
   gather_facts: false
@@ -8,27 +8,26 @@
     kubernetes.core.k8s:
       state: "{{ resource_state | default('present') }}"
   tasks:
-    - name: login into openshift cluster
+    - name: Login into openshift cluster
       community.okd.openshift_auth:
         username: "{{ kubeadmin_username }}"
         password: "{{ kubeadmin_password }}"
         host: "{{ k8s_api_address }}"
-        insecure_skip_tls_verify: true
       register: login_result
 
-    - name: create service for virtual machine
+    - name: Create service for virtual machine
       kubernetes.core.k8s:
         definition:
-         apiVersion: v1
-         kind: Service
-         metadata:
-           name: "{{ virtual_machine_name }}-ssh"
-           namespace: image-builder
-         spec:
-           externalTrafficPolicy: Cluster
-           ports:
-             - port: 22
-               protocol: TCP
-           selector:
-             kubevirt.io/domain: "{{ virtual_machine_name }}"
-           type: NodePort
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: "{{ virtual_machine_name }}-ssh"
+            namespace: image-builder
+          spec:
+            externalTrafficPolicy: Cluster
+            ports:
+              - port: 22
+                protocol: TCP
+            selector:
+              kubevirt.io/domain: "{{ virtual_machine_name }}"
+            type: NodePort

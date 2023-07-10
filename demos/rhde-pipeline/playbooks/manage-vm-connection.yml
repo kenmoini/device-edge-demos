@@ -8,12 +8,11 @@
     kubernetes.core.k8s:
       state: "{{ resource_state | default('present') }}"
   tasks:
-    - name: Login into openshift cluster
-      community.okd.openshift_auth:
-        username: "{{ kubeadmin_username }}"
-        password: "{{ kubeadmin_password }}"
-        host: "{{ k8s_api_address }}"
-      register: login_result
+    - name: Get a list of all pods from any namespace
+      kubernetes.core.k8s_info:
+        kind: Pod
+      register: pod_list
+
 
     - name: Create service for virtual machine
       kubernetes.core.k8s:

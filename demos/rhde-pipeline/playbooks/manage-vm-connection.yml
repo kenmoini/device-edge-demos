@@ -8,14 +8,6 @@
     kubernetes.core.k8s:
       state: "{{ resource_state | default('present') }}"
   tasks:
-    - name: Check kubeconfig file
-      ansible.builtin.shell:
-        cmd: kubectl config view
-      register: kubeconfig_view
-
-    - name: Debug check kubeconfig file
-      debug:
-        msg: "{{ kubeconfig_view.stdout }}"
         
     - name: Get a list of all pods from any namespace
       kubernetes.core.k8s_info:

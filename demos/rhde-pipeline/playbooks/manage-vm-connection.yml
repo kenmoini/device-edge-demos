@@ -9,13 +9,13 @@
       state: "{{ resource_state | default('present') }}"
   tasks:
     - name: login into openshift cluster
-      openshift_login:
+      k8s_auth:
         username: "{{ kubeadmin_username }}"
         password: "{{ kubeadmin_password }}"
         host: "{{ k8s_api_address }}"
         insecure_skip_tls_verify: true
-      register: login_result 
-       
+      register: login_result
+
     - name: create service for virtual machine
       kubernetes.core.k8s:
         definition:

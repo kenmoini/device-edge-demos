@@ -2,7 +2,7 @@
 
 # Enable the Python 3.9 Module
 sudo dnf module install -y python39
-sudo dnf install -y python39 python39-devel
+sudo dnf install -y python39 python39-devel python39-pip
 sudo dnf module enable -y python39
 
 # Make sure the Python 3.6 Module is disabled

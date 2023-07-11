@@ -26,3 +26,6 @@ fi
 # - Ansible Navigator
 # - Pip modules
 ./hack/partial-python39-setup.sh
+
+# Install OCP CLI Tools
+./hack/partial-setup-ocp-cli.sh

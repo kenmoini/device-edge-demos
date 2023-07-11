@@ -14,6 +14,7 @@ if [ -d "$HOME/device-edge-demos" ]; then
   git pull
 else
   cd $HOME
+  echo "Cloning from github.com/${REPO_NAME} ..."
   git clone https://github.com/${REPO_NAME}.git
   cd $HOME/device-edge-demos
 fi

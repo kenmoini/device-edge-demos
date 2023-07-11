@@ -11,5 +11,8 @@ To execute the various starting workflows requires a Bastion Host/Jump Box to ru
 You can use any RHEL 8.x compatible system and run:
 
 ```bash
+# Optional - export a different repo source
+export REPO_NAME="kenmoini/device-edge-demos"
+
 curl -sSL https://raw.githubusercontent.com/kenmoini/device-edge-demos/main/hack/setup-bastion.sh | bash -
 ```

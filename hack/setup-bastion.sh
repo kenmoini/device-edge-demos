@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set a default repo name if not provided
-REPO_NAME=${1:-tosin2013/device-edge-demos}
+REPO_NAME=${REPO_NAME:-tosin2013/device-edge-demos}
 
 # Ensure Git is installed
 echo "Installing Git..."

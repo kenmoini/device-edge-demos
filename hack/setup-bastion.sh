@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set a default repo name if not provided
+REPO_NAME=${1:-tosin2013/device-edge-demos}
+
 # Ensure Git is installed
 sudo dnf install -y git
 
@@ -10,7 +13,7 @@ if [ -d "$HOME/device-edge-demos" ]; then
   git pull
 else
   cd $HOME
-  git clone https://github.com/tosin2013/device-edge-demos.git
+  git clone https://github.com/${REPO_NAME}.git
   cd $HOME/device-edge-demos
 fi
 

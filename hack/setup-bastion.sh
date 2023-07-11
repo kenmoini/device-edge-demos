@@ -4,7 +4,8 @@
 REPO_NAME=${1:-tosin2013/device-edge-demos}
 
 # Ensure Git is installed
-sudo dnf install -y git
+echo "Installing Git..."
+sudo dnf install -yq git
 
 # Check if the repository is already cloned
 if [ -d "$HOME/device-edge-demos" ]; then

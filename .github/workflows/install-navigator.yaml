@@ -1,0 +1,33 @@
+name: Configure Ansible Navgiator workflow
+on:
+  workflow_dispatch:
+    inputs:
+      hostname:
+        description: 'hostname'
+        required: false
+        default: hostname
+
+jobs:
+  configure_ansible_navigator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+    - name: configure ansible navigator and python 3.11
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ inputs.hostname }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        command_timeout: 30m
+        script: | 
+          sudo yum install -y git
+          if [ -d "$HOME/device-edge-demos" ]; then
+            cd $HOME/device-edge-demos
+            git config pull.rebase false
+            git pull
+          else
+            git clone https://github.com/tosin2013/device-edge-demos.git
+            cd $HOME/device-edge-demos
+          fi
+          .github/workflows/configure-rhel8.7.sh

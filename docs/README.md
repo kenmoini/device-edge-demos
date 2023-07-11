@@ -106,7 +106,7 @@ ansible-navigator inventory --list -m stdout # --vault-password-file $HOME/.vaul
 ```
 
 ## Running Plyabooks 
-**Configure Openshift Registry**
+**Configure Openshift Registry** - OPTIONAL
 [Configuring the Registry for Perisistent Storage](https://github.com/tosin2013/openshift-4-deployment-notes/blob/master/vmware/configuring-registry.md)
 ```
 $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-openshift.yaml -t configure_registry -m stdout #  --vault-password-file $HOME/.vault_password 
@@ -132,16 +132,16 @@ $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-opens
 ```
 
 
-**Configure storage for SNO and OCP Virt**
+**Configure storage for SNO and OCP Virt**  - OPTIONAL
 ```
 $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-openshift.yaml -t configure_storage  -m stdout
 ```
-**Configure OpenShift Virtulaization**
+**Configure OpenShift Virtulaization**  - OPTIONAL
 ```
 $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-openshift.yaml -t  configure_virtualization -m stdout
 ```
 
-**Configure Image Builder Template**
+**Configure Image Builder Template** - OpenShift Virt VM
 ```
 $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-openshift.yaml -t setup_image_builder_template -m stdout
 ```
@@ -157,7 +157,7 @@ $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-opens
 ```
 
 
-**Deploy and Configure web container**
+**Deploy and Configure web container** - TESTING
 ```
 $ ansible-navigator run demos/rhde-pipeline/playbooks/configure-standalone-openshift.yaml -t  deploy_edge_container  -m stdout
 ```

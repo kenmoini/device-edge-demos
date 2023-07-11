@@ -34,6 +34,7 @@ tkn clustertask start create-vm-from-template \
 ### Expose virtual machine SSH
 ```
 $ tkn taskrun list
+###  create-vm-from-template-run-6q5bb will be different for this
 $  VM_NAME=$(tkn taskrun logs  create-vm-from-template-run-6q5bb  | grep "app:" | head -1 | awk '{print $3}')
 $ tkn task start manage-virtual-machine-connectivity \
   -p virtualMachineName="$VM_NAME"
@@ -71,11 +72,11 @@ tkn task start compose-image \
 ### Push image to registry
 ```
 tkn task start push-image-to-registry \
-  -p virtualMachineName="$(tkn taskrun logs --last --type TaskRun | grep "create-vm-from-template.results.name" | cut -d' ' -f2)"
+  -p virtualMachineName="$VM_NAME"
 ```
 
 ### Deploy composed image
 ```
 tkn task start push-image-to-registry \
-  -p virtualMachineName="$(tkn taskrun logs --last --type TaskRun | grep "create-vm-from-template.results.name" | cut -d' ' -f2)"
+  -p virtualMachineName="$VM_NAME"
 ````
